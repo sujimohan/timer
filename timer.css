@@ -89,7 +89,7 @@ hr {
     width: 100%;
     border: 0;
     border-top: 1px solid #aaa;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 /* ===========================
@@ -106,6 +106,7 @@ hr {
 .countdown-display h3 {
     font-size: 2rem;
     color: #333;
+    margin: 10px !important;
 }
 
 .time-box {
@@ -141,11 +142,17 @@ hr {
     display: block;
 }
 
+/* .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #e74c3c;
+    transition: width 0.3s ease-in;
+} */
 .progress-bar-fill {
     height: 100%;
     width: 0%;
     background-color: #e74c3c;
-    transition: width 0.3s ease;
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 /* ===========================
    RESPONSIVE DESIGN
