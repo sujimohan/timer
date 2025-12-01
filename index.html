@@ -9,52 +9,59 @@
     <body>
         <div class="container">
             <h1>Timer</h1>
-            <div class="control">
-                <!-- Hours -->
-                <label for="hours">Hours</label>
-                <input
-                    type="number"
-                    name="txtHours"
-                    id="txtHours"
-                    min="0"
-                    max="23" />
-                <!-- Minutes -->
-                <label for="minutes">Minutes</label>
-                <input
-                    type="number"
-                    name="txtMins"
-                    id="txtMins"
-                    min="0"
-                    max="59" />
-                <!-- Seconds -->
-                <label for="seconds">Seconds</label>
-                <input
-                    type="number"
-                    name="txtSecs"
-                    id="txtSecs"
-                    min="0"
-                    max="59" />
-                <div class="controlButton">
+
+            <!-- ===========================
+            TIMER INPUT with SET/RESET CONTROLS
+        ============================ -->
+            <div class="timer-controls">
+                <div class="control-group">
+                    <label for="txtHours">Hours</label>
+                    <input type="number" id="txtHours" min="0" max="23" />
+                </div>
+
+                <div class="control-group">
+                    <label for="txtMins">Minutes</label>
+                    <input type="number" id="txtMins" min="0" max="59" />
+                </div>
+
+                <div class="control-group">
+                    <label for="txtSecs">Seconds</label>
+                    <input type="number" id="txtSecs" min="0" max="59" />
+                </div>
+
+                <div class="button-group">
                     <button class="settimer">Start</button>
                     <button class="resettimer">Reset</button>
                 </div>
             </div>
+
             <hr />
 
-            <div class="countdown">
+            <!-- ===========================
+            COUNTDOWN TIMER SECTION
+        ============================ -->
+            <div class="countdown-display">
                 <h3>CountDown</h3>
 
-                <p><span id="disp_hours">00</span></p>
-                <p><span id="seperator">:</span></p>
-                <p><span id="disp_mins">00</span></p>
-                <p><span id="seperator">:</span></p>
-                <p><span id="disp_sec">00</span></p>
+                <div class="time-box">
+                    <span id="disp_hours">00</span>
+                    <span>:</span>
+                    <span id="disp_mins">00</span>
+                    <span>:</span>
+                    <span id="disp_sec">00</span>
+                </div>
+
                 <label id="set_time"></label>
+
                 <button class="playpause">
                     <i class="fa-solid fa-pause"></i>
                 </button>
+                <div class="progress-bar-container">
+                    <div id="myProgressBar" class="progress-bar-fill"></div>
+                </div>
             </div>
         </div>
+
         <script
             src="https://kit.fontawesome.com/589957875e.js"
             crossorigin="anonymous"></script>

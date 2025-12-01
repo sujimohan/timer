@@ -1,115 +1,134 @@
-//All Variable declaration
+// Input fields
 
-/**INPUT VARIABLES */
 const hoursInput = document.getElementById("txtHours");
 const minsInput = document.getElementById("txtMins");
 const secsInput = document.getElementById("txtSecs");
 
-/***DISPLAY VARIABLES */
+// Display fields
 const hoursDisplay = document.getElementById("disp_hours");
 const minsDisplay = document.getElementById("disp_mins");
 const secsDisplay = document.getElementById("disp_sec");
 
-/**BUTTONS set and reset*/
-const controlButtonDiv = document.querySelector(".controlButton");
-
+// Buttons
+const controlButtonDiv = document.querySelector(".button-group");
 const playpauseBtn = document.querySelector(".playpause");
 const playPauseIcon = playpauseBtn.children[0];
-let faPauseIcon = "fa-pause";
-let faPlayIcon = "fa-play";
-let inputTimerVal = 0;
-let intervalId = null;
-/***ACTIONS */
 
+//Progress bar container
+const progressBarContainer = document.querySelector(".progress-bar-container");
+const progressBar = document.getElementById("myProgressBar");
+//console.log(progressBar);
+let faPauseIcon = "fa-solid fa-pause";
+let faPlayIcon = "fa-solid fa-play";
+
+let inputTimerVal = 0;
+let totalTimerinSec = 0;
+let intervalId = null;
+let progress = 0;
+// Reset
 const resetStopwatch = () => {
     hoursInput.value = "";
     minsInput.value = "";
     secsInput.value = "";
+
     hoursDisplay.textContent = "00";
     minsDisplay.textContent = "00";
     secsDisplay.textContent = "00";
 
+    playPauseIcon.className = faPauseIcon;
+
     stopTimer();
+    updateProgressBar(0);
     playpauseBtn.style.display = "none";
+    // progressBarContainer.style.display = "none";
 };
+
+// Start/Reset buttons
 controlButtonDiv.addEventListener("click", (event) => {
     const target = event.target;
-    //console.log(target);
-    //guard control
+
     if (
         !target.classList.contains("settimer") &&
         !target.classList.contains("resettimer")
     ) {
         return;
     }
-    /**** ON settime clicked */
+
+    // Start
     if (target.classList.contains("settimer")) {
         inputTimerVal = convertToSec(
             hoursInput.value,
             minsInput.value,
             secsInput.value
         );
+
+        if (inputTimerVal <= 0) return;
+        playpauseBtn.style.display = "block";
+        progressBarContainer.style.display = "block";
         starttimer();
-        playpauseBtn.style.display = "block"; //showing the pause button
     }
 
-    //Reset Timer clicked
+    // Reset
     if (target.classList.contains("resettimer")) {
         resetStopwatch();
     }
 });
 
-/**PLAY PAUSE BUTTON CONTROL */
+// Play / Pause
 playpauseBtn.addEventListener("click", () => {
-    playpauseBtn.style.display = "block";
-    if (playPauseIcon.classList.contains(faPauseIcon)) {
-        playPauseIcon.classList.remove(faPauseIcon);
-        playPauseIcon.classList.add(faPlayIcon);
+    if (playPauseIcon.className.includes("fa-pause")) {
+        playPauseIcon.className = faPlayIcon;
         stopTimer();
-    } else if (playPauseIcon.classList.contains(faPlayIcon)) {
-        playPauseIcon.classList.remove(faPlayIcon);
-        playPauseIcon.classList.add(faPauseIcon);
-        // console.log("Starting :", inputTimerVal);
+    } else {
+        playPauseIcon.className = faPauseIcon;
         starttimer();
     }
 });
-//common functions
+
+// Convert to sec
 function convertToSec(h, m, s) {
-    return Number(h * 3600) + Number(m * 60) + Number(s) - 1;
+    totalTimerinSec = Number(h * 3600) + Number(m * 60) + Number(s);
+    return totalTimerinSec;
 }
 
-//Timer functionality
+// Start timer
 function starttimer() {
+    stopTimer();
+    // Simulate progress over time
+    progress = 0;
     intervalId = setInterval(() => {
-        if (inputTimerVal == 0) {
-            clearInterval(intervalId);
-            playpauseBtn.style.display = "none"; //hiding the play/pause button
+        if (inputTimerVal <= 0) {
             resetStopwatch();
+            return;
         }
         dispCountDown(inputTimerVal);
-        //console.log(inputTimerVal);
         inputTimerVal--;
     }, 1000);
 }
 
+// Stop timer
 function stopTimer() {
-    if (intervalId !== null) {
-        //console.log("Clearing the interval");
+    if (intervalId) {
         clearInterval(intervalId);
         intervalId = null;
     }
 }
 
-//display the count down
-function dispCountDown(balanceTime_secs) {
-    hoursDisplay.textContent = Math.floor(balanceTime_secs / 3600)
-        .toString()
-        .padStart(2, "0");
-    minsDisplay.textContent = Math.floor((balanceTime_secs % 3600) / 60)
-        .toString()
-        .padStart(2, "0");
+// Display
+function dispCountDown(sec) {
+    updateProgressBar(sec);
+    hoursDisplay.textContent = String(Math.floor(sec / 3600)).padStart(2, "0");
+    minsDisplay.textContent = String(Math.floor((sec % 3600) / 60)).padStart(
+        2,
+        "0"
+    );
+    secsDisplay.textContent = String(sec % 60).padStart(2, "0");
+}
 
-    secsDisplay.textContent = (balanceTime_secs % 60)
-        .toString()
-        .padStart(2, "0");
+// Function to update the progress
+
+function updateProgressBar(remaining) {
+    if (totalTimerinSec === 0) return;
+    const percentage = (remaining / totalTimerinSec) * 100;
+    progressBar.style.width = percentage + "%";
 }
