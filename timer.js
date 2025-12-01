@@ -1,10 +1,9 @@
 // Input fields
-
 const hoursInput = document.getElementById("txtHours");
 const minsInput = document.getElementById("txtMins");
 const secsInput = document.getElementById("txtSecs");
 
-// Display fields
+// Display fields - countdown
 const hoursDisplay = document.getElementById("disp_hours");
 const minsDisplay = document.getElementById("disp_mins");
 const secsDisplay = document.getElementById("disp_sec");
@@ -18,13 +17,17 @@ const playPauseIcon = playpauseBtn.children[0];
 const progressBarContainer = document.querySelector(".progress-bar-container");
 const progressBar = document.getElementById("myProgressBar");
 //console.log(progressBar);
+
+//play pause
 let faPauseIcon = "fa-solid fa-pause";
 let faPlayIcon = "fa-solid fa-play";
 
+//reset values
 let inputTimerVal = 0;
 let totalTimerinSec = 0;
-let intervalId = null;
+let intervalId = null; //to reset or to clear on reset
 let progress = 0;
+
 // Reset
 const resetStopwatch = () => {
     hoursInput.value = "";
@@ -46,7 +49,7 @@ const resetStopwatch = () => {
 // Start/Reset buttons
 controlButtonDiv.addEventListener("click", (event) => {
     const target = event.target;
-
+    //guard class to check
     if (
         !target.classList.contains("settimer") &&
         !target.classList.contains("resettimer")
@@ -94,7 +97,7 @@ function convertToSec(h, m, s) {
 // Start timer
 function starttimer() {
     stopTimer();
-    // Simulate progress over time
+
     progress = 0;
     intervalId = setInterval(() => {
         if (inputTimerVal <= 0) {
