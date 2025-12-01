@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CountDown Timer</title>
+        <link rel="stylesheet" href="timer.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Timers</h1>
+            <div class="control">
+                <!-- Hours -->
+                <label for="hours">Hours</label>
+                <input
+                    type="number"
+                    name="txtHours"
+                    id="txtHours"
+                    min="0"
+                    max="23" />
+                <!-- Minutes -->
+                <label for="minutes">Minutes</label>
+                <input
+                    type="number"
+                    name="txtMins"
+                    id="txtMins"
+                    min="0"
+                    max="59" />
+                <!-- Seconds -->
+                <label for="seconds">Seconds</label>
+                <input
+                    type="number"
+                    name="txtSecs"
+                    id="txtSecs"
+                    min="0"
+                    max="59" />
+                <div class="controlButton">
+                    <button class="settimer">Start</button>
+                    <button class="resettimer">Reset</button>
+                </div>
+            </div>
+            <hr />
+
+            <div class="countdown">
+                <h3>CountDown</h3>
+
+                <p><span id="disp_hours">00</span></p>
+                <p><span id="seperator">:</span></p>
+                <p><span id="disp_mins">00</span></p>
+                <p><span id="seperator">:</span></p>
+                <p><span id="disp_sec">00</span></p>
+                <label id="set_time"></label>
+                <button class="playpause">
+                    <i class="fa-solid fa-pause"></i>
+                </button>
+            </div>
+        </div>
+        <script
+            src="https://kit.fontawesome.com/589957875e.js"
+            crossorigin="anonymous"></script>
+        <script src="timer.js"></script>
+    </body>
+</html>

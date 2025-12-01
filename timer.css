@@ -1,0 +1,114 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    font-size: 3rem;
+}
+
+.container {
+    margin: 50px;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: peachpuff;
+    border-radius: 8px;
+}
+
+/* --- Control Inputs Section --- */
+.control {
+    display: flex;
+    flex-direction: row;
+    gap: 15px; /* Increased gap for better spacing */
+    align-items: center; /* Centers items vertically */
+    padding: 5px;
+    margin-bottom: 50px;
+}
+
+.control label {
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.control input {
+    font-size: 1.2rem;
+    width: 60px;
+    text-align: center;
+}
+.settimer {
+    /* Use width/height and padding to size the button */
+    width: 60px;
+    height: 40px;
+    border: none;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 10px; /* Make it circular */
+    margin-left: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.resettimer {
+    /* Use width/height and padding to size the button */
+    width: 60px;
+    height: 40px;
+    border: none;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 10px; /* Make it circular */
+    margin-left: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* --- Countdown Display Section --- */
+.countdown {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Better alignment for text and numbers */
+    margin-top: 50px;
+    font-size: 2.5rem; /* Increase size for display */
+    font-weight: bold;
+}
+
+.countdown h3,
+.countdown p {
+    margin: 0;
+    padding: 0 5px;
+}
+
+/* Style the h3, p (e.g., 'CountDown :') */
+.countdown h3 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: darkslategrey;
+    align-self: center;
+    padding-right: 15px;
+}
+
+/* Style the numbers and separators to dark grey color */
+.countdown p {
+    color: darkslategrey;
+}
+
+/* Style the pause button */
+.playpause {
+    /* Use width/height and padding to size the button */
+    width: 60px;
+    height: 60px;
+    border: none;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%; /* Make it circular */
+    margin-left: 20px;
+    cursor: pointer;
+    display: none;
+    font-size: x-large;
+}
+
+hr {
+    width: 100%;
+    color: grey;
+}
