@@ -75,7 +75,7 @@ playpauseBtn.addEventListener("click", () => {
 });
 //common functions
 function convertToSec(h, m, s) {
-    return Number(h * 3600) + Number(m * 60) + Number(s);
+    return Number(h * 3600) + Number(m * 60) + Number(s) - 1;
 }
 
 //Timer functionality
